@@ -7,30 +7,48 @@
 //  URL:        https://github.com/rithviknishad/PID-Control.git
 //
 
-class PID
+typedef struct PID_Tuning
 {
-    protected:
-    
-    float* control_variable, process_variable, output_variable;
-    float error[];
-
-    public:
-
     // PID tuning variables.
-    float Kp = 0.1, Ki = 0.1, Kd = 0.1; // set value to 0, to disable appropriate control mechanism
+    // set value to 0, to disable appropriate control mechanism
+    float Kp, Ki, Kd;
+
+    PID_Tuning(float kp, float ki, float kd);
+    PID_Tuning(PID_Tuning & obj);
+} PID_Tuning;
 
 
-    protected:
+typedef struct PID_Output
+{
+    // PID output boundaries setting variables.
+    float max_op, min_op;
 
-    static const float compute_p(float &error, float &kp) 
-    { return error * kp; }
+    PID_Output(float max_value, float min_value);
+    PID_Output(PID_Output & obj);
+} PID_Output;
 
-    static const float compute_i(float &accumulation_of_error, float &delta_time)
-    { return accumulation_of_error * delta_time; }
 
-    static const float compute_d(float &error, float &last_error, float &delta_time) 
-    { return (error - last_error) / delta_time; }
+typedef struct PID_System : PID_Tuning, PID_Output
+{
+    PID_System(float kp, float ki, float kd, float max_op, float min_op);
+    PID_System(PID_Tuning _pid_tuning, PID_Output _pid_output);
+} PID_System;
+
+
+class PID : PID_System
+{
+    private:
+    float *process_ptr, *setpoint;
 
     public:
-    
+    float error, last_error, integral_error, last_time, delta_time, control;
+
+    public:
+
+    PID(float * var_setpoint, float * var_process, float kp, float ki, float kd, float op_max, float op_min);
+    PID(float * var_setpoint, float * var_process, PID_System & pid_system);
+
+    public:
+
+    float update(const float time);
 };
