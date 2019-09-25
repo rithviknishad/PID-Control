@@ -1,5 +1,6 @@
 //
-//
+//  FILE:       PID.cpp
+//  URL:        https://github.com/rithviknishad/PID-Control.git
 //
 
 
@@ -41,6 +42,13 @@ PID_System::PID_System(PID_Tuning _pid_tuning, PID_Output _pid_output) : PID_Tun
 
 //PID Constructor(s)
 PID::PID(float * var_setpoint, float * var_process, float kp, float ki, float kd, float op_max, float op_min) : PID_System(kp, ki, kd, op_max, op_min)
+{
+    process_ptr = var_process;
+    setpoint = var_setpoint;
+    error = last_error = integral_error = last_time = delta_time = control = 0;
+}
+
+PID::PID(float * var_setpoint, float * var_process, PID_System & pid_system) : PID_System(pid_system)
 {
     process_ptr = var_process;
     setpoint = var_setpoint;

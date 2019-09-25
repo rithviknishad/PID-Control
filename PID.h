@@ -1,9 +1,9 @@
 //
 //  FILE:       PID.h
 //  AUTHOR:     RITHVIK NISHAD (https://github.com/rithviknishad)
-//  VERSION:    0.1.0
-//  DESC:       PID Control Loop Mechanism
-//  TAGS:       PID, Closed Control Loop, Open Source, Standard Library
+//  VERSION:    0.1.0   [ September 25, 2019 - 10:40 (UTC+5:30) ]
+//  DESC:       PID Loop Control Mechanism
+//  TAGS:       PID, Closed Loop Control, Open Source, Standard Library
 //  URL:        https://github.com/rithviknishad/PID-Control.git
 //
 
