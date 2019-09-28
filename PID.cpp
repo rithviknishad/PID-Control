@@ -3,6 +3,7 @@
 //  URL:        https://github.com/rithviknishad/PID-Control.git
 //
 
+#include "PID.h"
 
 //PID_Tuning Constructor(s)
 PID_Tuning::PID_Tuning(float kp, float ki, float kd)
