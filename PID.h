@@ -44,11 +44,9 @@ class PID : PID_System
     float error, last_error, integral_error, last_time, delta_time, control;
 
     public:
-
     PID(float * var_setpoint, float * var_process, float kp, float ki, float kd, float op_max, float op_min);
     PID(float * var_setpoint, float * var_process, PID_System & pid_system);
 
     public:
-
     float update(const float time);
 };

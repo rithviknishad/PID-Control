@@ -55,6 +55,7 @@ PID::PID(float * var_setpoint, float * var_process, PID_System & pid_system) : P
     error = last_error = integral_error = last_time = delta_time = control = 0;
 }
 
+
 float PID::update(const float time)
 {
     //computes error, delta_time and then integral_error
